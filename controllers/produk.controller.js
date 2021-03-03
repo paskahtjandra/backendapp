@@ -1,22 +1,22 @@
 const db = require('../models')
-const Pasar = db.pasars
+const Produk = db.produks
 
 //create tweet
-function createPasar(req, res, next) {
-    Pasar.create(req.body)
+function createProduk(req, res, next) {
+    Produk.create(req.body)
         .then((data) => {
             res.send(data)
         })
         .catch((err) => {
             res.status(500).send({
-                message: "Error in create tweet"
+                message: "Error in create product"
             })
         })
 }
 
 //findALL
 function findAll(req, res, next) {
-    Pasar.findAll()
+    Produk.findAll()
         .then((data) => {
             res.send(data)
         })
@@ -29,7 +29,7 @@ function findAll(req, res, next) {
 //findOne
 function findOne(req, res, next) {
     const id = req.params.id
-    Pasar.findByPk(id)
+    Produk.findByPk(id)
         .then((data) => {
             res.send(data)
         })
@@ -45,7 +45,7 @@ function update(req, res, next) {
     let condition = {
         id: id
     }
-    Pasar.update(req.body, { where: condition })
+    Produk.update(req.body, { where: condition })
         .then(num => {
             if (num != 1) {
                 req.status(500).send({
@@ -70,7 +70,7 @@ function _delete(req, res, next) {
         id: id
     }
 
-    Pasar.destroy({
+    Produk.destroy({
             where: condition
         })
         .then(num => {
@@ -91,7 +91,7 @@ function _delete(req, res, next) {
 }
 
 module.exports = {
-    createPasar,
+    createProduk,
     findAll,
     findOne,
     update,

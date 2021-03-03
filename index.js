@@ -3,12 +3,13 @@ const express = require('express')
 const app = express();
 const db = require('./models')
 const bodyparser = require('body-parser')
+const errorHandler = require('./utils/errorHandler')
 
 db.sequelize.sync({});
 
 //routes
 const userRoute = require('./routes/user.routes')
-const pasarRoute = require('./routes/pasar.routes')
+const produkRoute = require('./routes/produk.routes')
 
 //bodyparser
 app.use(express.json())
@@ -16,7 +17,10 @@ app.use(express.urlencoded({ extended: false }))
 
 //defining route
 app.use('/user', userRoute)
-app.use('/pasar',pasarRoute)
+app.use('/produk', produkRoute)
+
+//errorHadler
+app.use(errorHandler)
 
 app.use('/', (req, res) => {
     res.send({
