@@ -1,41 +1,75 @@
 const db = require("../models");
 const User = db.users;
 const _ = require('lodash');
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 // create User
 function registerUser(req, res, next) {
     User.create(req.body)
-        .then((data) => {
-            res.status(200).send(data);
+        .then(data => {
+            let payload = {
+                id: data.id,
+                username: data.username
+            }
+            const token = jwt.sign(payload, process.env.JWT_TOKEN)
+            return res.status(200).send({ token })
         })
-        .catch((err) => {
+        .catch(err => {
             if (err.name == 'SequelizeUniqueConstraintError') {
                 const failResponse = {
                     success: 'false',
                     error: {
+                        // Fetch
                         details: _.map(err.errors, ({ message, type }) => ({
                             message,
                             type
                         }))
                     }
-                }
+                };
+                // console.log(failResponse.error)
                 return res.status(422).send(failResponse)
             }
-            res.status(500).send({
-                message: "Error in create User",
-            });
-        });
+            return next(err)
+        })
 }
 
+// Login to existing Account
+function login(req, res, next) {
+    User.findOne({
+            where: {
+                username: req.body.username
+            },
+        })
+        .then(user => {
+            if (!user) return next("User with given username is not found.")
+                // Need sync with bcryptjs
+            const isValid = bcrypt.compareSync(req.body.password, user.password)
+            if (!isValid) {
+                return next({
+                    statusCode: 401,
+                    message: "Username or Password doesn't match with existing resource."
+                })
+            }
+            // If Valid
+            let payload = {
+                id: user.id,
+                username: user.username
+            }
+            const token = jwt.sign(payload, process.env.JWT_TOKEN)
+            res.status(200).send({ token })
+        })
+        .catch(err => {
+            return next(err)
+        })
+}
 // findAll
 function findAll(req, res, next) {
     User.findAll().then(users => {
             res.status(200).send({ users })
         })
         .catch(err => {
-            res.status(500).send({
-                message: "Error to findAll"
-            })
+            return next(err)
         })
 }
 
@@ -46,72 +80,73 @@ function findOne(req, res, next) {
         .then((data) => {
             if (data == null) {
                 res.status(500).send({
-                    message: "Error in findOne",
+                    message: "Error with given id",
                 });
             }
             res.send(data);
         })
         .catch((err) => {
-            res.status(500).send({
-                message: "Error in findOne",
-            });
+            return next(err)
         });
 }
 
 // updateOne
 function update(req, res, next) {
-    const id = req.params.id;
-    let condition = {
-        id: id,
-    };
-    User.update(req.body, { where: condition })
-        .then((num) => {
-            if (num != 1) {
-                res.status(500).send({
-                    message: "Affected row not one",
-                });
+    let token = req.headers.authorization
+    token = token.split(' ')[1]
+    let payload = jwt.decode(token)
+    User.update(req.body, {
+            where: { id: payload.id }
+        })
+        // return number of rows that affected
+        .then(num => {
+            if (num == 0) {
+                return next({
+                    statusCode: 404,
+                    message: "Profile is not updated yet"
+                })
             }
             res.status(200).send({
                 success: true,
-                message: "Update successful",
-            });
+                message: "Profile is updated."
+            })
         })
-        .catch((err) => {
-            res.status(500).send({
-                message: "Error in update User",
-            });
-        });
+        .catch(err => {
+            return next(err)
+        })
 }
 
 // delete
 function destroy(req, res, next) {
-    const id = req.params.id;
-    let condition = {
-        id: id,
-    };
-
+    let token = req.headers.authorization
+    token = token.split(' ')[1]
+    let payload = jwt.decode(token)
     User.destroy({
-            where: condition,
+            where: {
+                id: payload.id
+            }
         })
-        .then((num) => {
-            if (num != 1) {
-                res.status(500).send({
-                    message: "Affected row not one",
-                });
+        // return the number of affected rows
+        .then(num => {
+            if (num == 0) {
+                return next({
+                    statusCode: 404,
+                    message: "Account is not deleted yet"
+                })
             }
             res.status(200).send({
-                message: "Delete successful",
-            });
+                success: true,
+                message: "Account is deleted."
+            })
         })
-        .catch((err) => {
-            res.status(500).send({
-                message: "Error in delete User",
-            });
-        });
+        .catch(err => {
+            return next(err)
+        })
 }
 
 module.exports = {
     registerUser,
+    login,
     findAll,
     findOne,
     update,
