@@ -1,8 +1,9 @@
 const db = require('../models')
 const Produk = db.produks
 
-//create tweet
+//create produk
 function createProduk(req, res, next) {
+    console.log(req.file)
     console.log(req.user)
     req.body.userId = req.user.id
     Produk.create(req.body)

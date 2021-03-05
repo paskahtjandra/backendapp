@@ -4,12 +4,14 @@ const joi = require('joi')
 const name = joi.string().regex(/^[a-z A-Z]+$/)
 const username = joi.string().regex(/^[0-9 @-Z a-z]+$/)
 const password = joi.string().min(8).strict()
+const strings = joi.string()
 
 // Schema Validation for register
 const registerSchema = joi.object().keys({
-    firstname: name.required(),
-    lastname: name.required(),
+    nickname: name.required(),
+    email: strings.required(),
     username: username.required(),
+    region: strings.required(),
     password: password.required(),
     confirmPassword: joi.string().valid(joi.ref('password')).required().strict(),
 })
@@ -23,8 +25,9 @@ const loginSchema = joi.object().keys({
 // Schema Validation for update profile
 const updateProfileSchema = joi.object().keys({
     username: username.empty(''),
-    firstname: name.empty(''),
-    lastname: name.empty(''),
+    nickname: name.empty(''),
+    email: strings.empty(''),
+    region: strings.empty(''),
     password: password.required(),
     confirmPassword: joi.string().valid(joi.ref('password')).required().strict(),
 })
