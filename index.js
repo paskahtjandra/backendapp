@@ -15,6 +15,8 @@ const produkRoute = require('./routes/produk.routes')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use(express.static("public"))
+
 //defining route
 app.use('/user', userRoute)
 app.use('/produk', produkRoute)
