@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "cea7937f-f7ec-4d11-9199-b75c98698b37",
+		"name": "appkel7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Sample\",\r\n    \"lastname\":\"user\",\r\n    \"username\":\"sampleuser123\",\r\n    \"password\":\"samplepass123\",\r\n    \"confirmPassword\":\"samplepass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/user/register",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"sampleuser123\",\r\n    \"password\":\"samplepass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/user/login",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/user/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwMDU4fQ.l_-lGbQlcYEdrZjqw_mwYBkXxPrf1nnLwVAWokElgbU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/user/6",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwMDU4fQ.l_-lGbQlcYEdrZjqw_mwYBkXxPrf1nnLwVAWokElgbU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Sample\",\r\n    \"lastname\":\"User\",\r\n    \"username\":\"sampleuser123\",\r\n    \"password\":\"samplepass123\",\r\n    \"confirmPassword\":\"samplepass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/user/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwMDU4fQ.l_-lGbQlcYEdrZjqw_mwYBkXxPrf1nnLwVAWokElgbU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/user/delete/5",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"delete",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produks",
+			"item": [
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwNzAxfQ.NXOmfP14wehXpGfTdVdBzRKEBY2z7Y2-flzAJlhrS8Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namaproduk\":\"sample product\",\r\n    \"harga\":\"2500\",\r\n    \"jumlah\": \"4\",\r\n    \"deskripsi\": \"sample deskripsi\",\r\n    \"gambar\":\"sample gambar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/produk/create",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/produk/productlist",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"productlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/produk/3",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOwn product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwNzAxfQ.NXOmfP14wehXpGfTdVdBzRKEBY2z7Y2-flzAJlhrS8Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/produk/myproduct/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"myproduct",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwNzAxfQ.NXOmfP14wehXpGfTdVdBzRKEBY2z7Y2-flzAJlhrS8Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namaproduk\":\"sample product\",\r\n    \"harga\":\"2500\",\r\n    \"jumlah\": \"2\",\r\n    \"deskripsi\": \"sample deskripsi\",\r\n    \"gambar\":\"sample gambar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/produk/update/3",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwNzAxfQ.NXOmfP14wehXpGfTdVdBzRKEBY2z7Y2-flzAJlhrS8Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/produk/delete/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

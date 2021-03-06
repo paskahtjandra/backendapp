@@ -1,0 +1,2 @@
+Proyek ini merupakan website buatan kelompok 7 bcc intern, dimana website ini akan membantu petani dan pembeli agar lebih dekat. Aplikasi ini juga menawarkan berbagai macam hasil tani, dan juga beragam alat tani.
+api docs : https://documenter.getpostman.com/view/14669717/Tz5iAgcF
