@@ -6,4 +6,4 @@ cd /var/app/current/;
 
 nvm install 14 --lts;
 
-npm ci;
+npm install;
