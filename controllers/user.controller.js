@@ -38,7 +38,7 @@ function registerUser(req, res, next) {
 function login(req, res, next) {
     User.findOne({
             where: {
-                username: req.body.username
+                [Op.or]: [{ username: req.body.username }, { email: req.body.username }],
             },
         })
         .then(user => {
