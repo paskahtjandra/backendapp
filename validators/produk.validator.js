@@ -13,7 +13,6 @@ const createSchema = joi.object().keys({
     deskripsi: deskripsi.required(),
     harga: harga.required(),
     jumlah: jumlah.required(),
-    gambar: gambar.required(),
 
 });
 

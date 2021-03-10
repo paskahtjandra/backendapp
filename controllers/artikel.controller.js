@@ -1,20 +1,18 @@
 const db = require("../models");
-const Produk = db.produks;
-const { Op } = require("sequelize");
+const Artikel = db.artikels;
 
-//create produk
-function createProduk(req, res, next) {
-    console.log(req.file)
-    const { namaproduk, deskripsi, harga, jumlah } = req.body;
-    const product = {
-        namaproduk,
-        deskripsi,
-        harga,
-        jumlah,
+//create artikel
+function createArtikel(req, res, next) {
+    const { judul, konten, penulis, tanggalposting } = req.body;
+    const artikel = {
+        judul,
+        konten,
+        penulis,
+        tanggalposting,
         userId: req.user.id,
-        gambar: req.file.path
+        gambar: req.file.path,
     };
-    Produk.create(product)
+    Artikel.create(artikel)
         .then((data) => {
             res.send(data);
         })
@@ -25,33 +23,11 @@ function createProduk(req, res, next) {
         });
 }
 
-//findinput
-function findinput(req, res, next) {
-    const query = req.query.namaproduk;
-    var condition = {
-        namaproduk: {
-            [Op.like]: `%${query}%`
-        }
-    };
-    Produk.findAll({ where: condition })
-        .then((data) => {
-            if (data.length == 0) {
-                res.send({
-                    message: "There is no data",
-                });
-            }
-            res.send(data);
-        })
-        .catch((err) => {
-            next(err);
-            return;
-        });
-}
 //findALL
 function findAll(req, res, next) {
     const query = req.params.query;
     var condition = {};
-    Produk.findAll({ where: condition })
+    Artikel.findAll({ where: condition })
         .then((data) => {
             if (data.length == 0) {
                 res.send({
@@ -65,10 +41,11 @@ function findAll(req, res, next) {
             return;
         });
 }
+
 //findOne
 function findOne(req, res, next) {
     const id = req.params.id;
-    Produk.findByPk(id)
+    Artikel.findByPk(id)
         .then((data) => {
             if (data == null) {
                 next("No product found");
@@ -81,22 +58,22 @@ function findOne(req, res, next) {
             return;
         });
 }
-//updateOwnProduct
+//updateOwnartikel
 function update(req, res, next) {
-    const { namaproduk, deskripsi, harga, jumlah } = req.body;
-    const product = {
-        namaproduk,
-        deskripsi,
-        harga,
-        jumlah,
-        userId: req.user.id,
-        gambar: req.file.path,
-    };
     const id = req.params.id;
+    const { judul, konten, penulis, tanggalposting } = req.body;
+    const artikel = {
+        judul,
+        konten,
+        penulis,
+        tanggalposting,
+        userId: req.user.id,
+        //gambar: req.file.path,
+    };
     let condition = {
         id: id,
     };
-    Produk.update(product, { where: condition })
+    Artikel.update(artikel, { where: condition })
         .then((num) => {
             if (num == 1) {
                 if (num == null) {
@@ -119,12 +96,12 @@ function update(req, res, next) {
         });
 }
 
-//find own product
+//find own artikel
 function findownproduct(req, res, next) {
     let condition = {
-        userId: req.user.id,
+        userId: req.params.id,
     };
-    Produk.findAll({ where: condition })
+    Artikel.findAll({ where: condition })
         .then((data) => {
             if (data.legth == 0) {
                 res.send({
@@ -146,7 +123,7 @@ function _delete(req, res, next) {
         id: id,
     };
 
-    Produk.destroy({
+    Artikel.destroy({
             where: condition,
         })
         .then((num) => {
@@ -168,11 +145,10 @@ function _delete(req, res, next) {
 }
 
 module.exports = {
-    createProduk,
+    createArtikel,
     findAll,
     findOne,
     findownproduct,
     update,
     delete: _delete,
-    findinput,
 };

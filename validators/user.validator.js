@@ -14,6 +14,7 @@ const registerSchema = joi.object().keys({
     region: strings.required(),
     password: password.required(),
     confirmPassword: joi.string().valid(joi.ref('password')).required().strict(),
+    status: strings.required(),
 })
 
 // Schema Validation for login
@@ -30,6 +31,7 @@ const updateProfileSchema = joi.object().keys({
     region: strings.empty(''),
     password: password.required(),
     confirmPassword: joi.string().valid(joi.ref('password')).required().strict(),
+    status: strings.empty(''),
 })
 
 module.exports = {
