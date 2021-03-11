@@ -24,11 +24,11 @@ const artikels = require('./artikel.model')(sequelize, Sequelize)
 users.hasMany(produks, { as: "produks", onDelete: "cascade", onUpdate: "cascade" })
 produks.belongsTo(users, { foreignKey: "userId", as: "user" })
 
-users.hasMany(pembayarans, { as: "pembayarans", onDelete: "cascade", onUpdate: "cascade" })
-pembayarans.belongsTo(users, { foreignKey: "userId", as: "user" })
-
 users.hasMany(artikels, { as: "artikels", onDelete: "cascade", onUpdate: "cascade" })
 artikels.belongsTo(users, { foreignKey: "userId", as: "user" })
+
+users.hasMany(pembayarans, { as: "pembayarans", onDelete: "cascade", onUpdate: "cascade" })
+pembayarans.belongsTo(users, { foreignKey: "idpembeli", as: "user" })
 
 module.exports = {
     Sequelize,

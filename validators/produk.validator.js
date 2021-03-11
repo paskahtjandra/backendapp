@@ -5,7 +5,6 @@ const namaproduk = joi.string()
 const deskripsi = joi.string()
 const harga = joi.number()
 const jumlah = joi.number()
-const gambar = joi.string()
 
 // Create Validator Schema
 const createSchema = joi.object().keys({
@@ -22,7 +21,6 @@ const updateSchema = joi.object().keys({
     deskripsi: deskripsi.empty(''),
     harga: harga.empty(''),
     jumlah: jumlah.empty(''),
-    gambar: gambar.empty('')
 })
 
 module.exports = {

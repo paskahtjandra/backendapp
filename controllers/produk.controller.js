@@ -123,7 +123,7 @@ function update(req, res, next) {
 function findownproduct(req, res, next) {
     let condition = {
         userId: req.user.id,
-    };
+    }
     Produk.findAll({ where: condition })
         .then((data) => {
             if (data.legth == 0) {

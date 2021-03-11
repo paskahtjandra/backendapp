@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const pembayaran = sequelize.define('pembayarans', {
-        namapembeli: {
+        idpenjual: {
             type: Sequelize.STRING,
             allowNull: false,
         },
@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
         },
         total: {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
             allowNull: false,
         },
         buktipembayaran: {
@@ -23,7 +23,11 @@ module.exports = (sequelize, Sequelize) => {
         status: {
             type: Sequelize.STRING,
             allowNull: false,
-        }
+        },
+        idproduk: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
 
     })
     return pembayaran

@@ -26,11 +26,11 @@ router.get('/productlist', produkController.findAll)
 //findinput
 router.get('/search', produkController.findinput)
 
+//findownproduct
+router.get('/myproduct', jwtMiddleware, produkController.findownproduct)
+
 //getone
 router.get('/:id', produkController.findOne)
-
-//findownproduct
-router.get('/myproduct/:id', jwtMiddleware, produkController.findownproduct)
 
 //update
 router.put('/update/:id', upload.single('productimage'), jwtMiddleware, joiMiddleware, produkController.update)

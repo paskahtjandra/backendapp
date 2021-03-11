@@ -23,11 +23,11 @@ router.post('/create', jwtMiddleware, upload.single('artikelimage'), artikelCont
 //findall
 router.get('/artikel', artikelController.findAll)
 
+//findownproduct
+router.get('/myarticles', jwtMiddleware, artikelController.findownproduct)
+
 //getone
 router.get('/:id', artikelController.findOne)
-
-//findownproduct
-router.get('/myarticles/:id', jwtMiddleware, artikelController.findownproduct)
 
 //update
 router.put('/update/:id', jwtMiddleware, artikelController.update)
