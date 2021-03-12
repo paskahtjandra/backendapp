@@ -1,0 +1,1168 @@
+{
+	"info": {
+		"_postman_id": "cea7937f-f7ec-4d11-9199-b75c98698b37",
+		"name": "appkel7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickname\":\"Sample\",\r\n    \"email\":\"sampe@gmail.com\",\r\n    \"region\":\"Indonesia/JawaTimur/Malang\",\r\n    \"username\":\"sampleuser1234\",\r\n    \"password\":\"samplepass123\",\r\n    \"confirmPassword\":\"samplepass123\",\r\n    \"status\":\"pembeli\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/user/register",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"sampleuser1234\",\r\n    \"password\":\"samplepass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/user/login",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/user/users",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5Mjc3ODh9.s1DGkyo1GVBtzo-gOI6TajFe8mZrHENTHuSTY21oUyE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/user/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTE2MDEwfQ.syqKO2QRznIYPKb1MaBryPAOJkt2GeLp8_Xgc_PcFog",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTEzMzY0fQ.fSYXvRz4Btv1NtcsyQtgpZ5E-mHAVcy5opizwUOvXMc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickname\":\"Sample Name\",\r\n    \"email\":\"sampe@gmail.com\",\r\n    \"region\":\"Indonesia/JawaTimur/Malang\",\r\n    \"username\":\"sampleuser123\",\r\n    \"password\":\"samplepass123\",\r\n    \"confirmPassword\":\"samplepass123\",\r\n    \"status\":\"penjual\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/user/3",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE0ODUwMDU4fQ.l_-lGbQlcYEdrZjqw_mwYBkXxPrf1nnLwVAWokElgbU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/user/delete/5",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"user",
+								"delete",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produks",
+			"item": [
+				{
+					"name": "create product",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTE2MDEwfQ.syqKO2QRznIYPKb1MaBryPAOJkt2GeLp8_Xgc_PcFog",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5NDI4MjJ9.iyGZSXVkx_hMI7m1Ag34OjaIok9BXD-mMreoAg-n3qY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "namaproduk",
+									"value": "sample product2",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "deskripsi",
+									"value": "sample description",
+									"type": "text"
+								},
+								{
+									"key": "productimage",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/produk/create",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/produk/productlist",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"productlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/produk/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOwn product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5Mjc3OTl9.ojNpvtd1XV76sYTtYXM5WLtiwzp35TcqcwmIeyP0jEc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/produk/myproduct",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"myproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxNjE4MX0.MZ6cvgJlkW3Atz2X8UkICFzVYm9NQNIsRt78Qq8fGhc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5NDI4MjJ9.iyGZSXVkx_hMI7m1Ag34OjaIok9BXD-mMreoAg-n3qY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "namaproduk",
+									"value": "sample product",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "deskripsi",
+									"value": "astaganaga",
+									"type": "text"
+								},
+								{
+									"key": "productimage",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/produk/update/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTUwOTE2OTd9.-H9a9nWruYs0rbI79cexQLa7TT8NZykwsAIzUBtE0ls",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/produk/delete/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}\\\\uploads\\\\2021-03-12T01-44-31.267Z.jpeg",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"",
+								"uploads",
+								"",
+								"2021-03-12T01-44-31.267Z.jpeg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/produk/search?namaproduk=sample",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"produk",
+								"search"
+							],
+							"query": [
+								{
+									"key": "namaproduk",
+									"value": "sample"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscribe",
+			"item": [
+				{
+					"name": "create subscribe",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTE2MjAwfQ.pYuxqU1C70h5CqY3UHj480K5RIgpHKvoDBQGExOyb-E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5NDI4MjJ9.iyGZSXVkx_hMI7m1Ag34OjaIok9BXD-mMreoAg-n3qY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "namaproduk",
+									"value": "sample subscription2",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "50000",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "deskripsi",
+									"value": "sample description",
+									"type": "text"
+								},
+								{
+									"key": "productimage",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/subscribe/startsubscribe",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"startsubscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all subscription",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/subscribe/allsubscription",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"allsubscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne subscription",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/subscribe/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOwn subscription",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5Mjc3OTl9.ojNpvtd1XV76sYTtYXM5WLtiwzp35TcqcwmIeyP0jEc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/subscribe/mysubscription",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"mysubscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update subscription",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTE2MjAwfQ.pYuxqU1C70h5CqY3UHj480K5RIgpHKvoDBQGExOyb-E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTQ5NDI4MjJ9.iyGZSXVkx_hMI7m1Ag34OjaIok9BXD-mMreoAg-n3qY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "namaproduk",
+									"value": "wow",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "50000",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "deskripsi",
+									"value": "astaganaga",
+									"type": "text"
+								},
+								{
+									"key": "productimage",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/subscribe/update/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete subscription",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTUwOTE2OTd9.-H9a9nWruYs0rbI79cexQLa7TT8NZykwsAIzUBtE0ls",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/subscribe/delete/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show image",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{endpoint}}\\\\uploads\\\\2021-03-11T13-12-19.010Z.jpeg",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"",
+								"uploads",
+								"",
+								"2021-03-11T13-12-19.010Z.jpeg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search subscription",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/subscribe/search?namaproduk=sample",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"subscribe",
+								"search"
+							],
+							"query": [
+								{
+									"key": "namaproduk",
+									"value": "sample"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pembayarans",
+			"item": [
+				{
+					"name": "create pembayaran",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxNjMyMX0.eVOHEytjdBOUFaQfH0El2MGSjFTxMcRq4fGhwvwLJdM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTI1IiwiaWF0IjoxNjE1MzUwMzg3fQ.uskNzYwwJRhrJsNxhClvjXzdIz-6X_pBfmfyRkhxzTc",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"harga\":\"50000\",\r\n    \"jumlah\":\"10\",\r\n    \"idpenjual\":\"1\",\r\n    \"idproduk\":\"4\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/pembayaran",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"pembayaran"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validasi pembayaran",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxNjMyMX0.eVOHEytjdBOUFaQfH0El2MGSjFTxMcRq4fGhwvwLJdM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "buktipembayaran",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/validasi/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"validasi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "konfirmasi pembayaran produk",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTE2NDQwfQ.K-wxhWjJ2qnWPlHLRq74lVG7dn1M8Y6lXc0XBf0UEVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NDc3ODczfQ.M8uaqc8cAaUjA5LYTszpHI2gXGMBCrXkA7gtIFUJZfY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/konfirmasiproduk/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"konfirmasiproduk",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "konfirmasi pembayaran subscribe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NTE2NDQwfQ.K-wxhWjJ2qnWPlHLRq74lVG7dn1M8Y6lXc0XBf0UEVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzIiwiaWF0IjoxNjE1NDc3ODczfQ.M8uaqc8cAaUjA5LYTszpHI2gXGMBCrXkA7gtIFUJZfY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/konfirmasisubscribe/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"konfirmasisubscribe",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll pembayaran",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/allpembayaran",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"allpembayaran"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findmypembeli",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxMDk0MX0.I-mEJgg3CgHrpSOQfS-Bjc_E_Cha-vcuXADvsTqOmrM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/daftarpembeli",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"daftarpembeli"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/pembayaran/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"pembayaran",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "artikels",
+			"item": [
+				{
+					"name": "create artikel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxNjYyNn0.4x-gfNgI-aSKawqPEtAbZJm8YIHvKXgqtsuL8hDWDEc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "judul",
+									"value": "Sample Title",
+									"type": "text"
+								},
+								{
+									"key": "penulis",
+									"value": "Sample User",
+									"type": "text"
+								},
+								{
+									"key": "konten",
+									"value": "Saya lapar banget",
+									"type": "text"
+								},
+								{
+									"key": "tanggalposting",
+									"value": "12 Maret 2021",
+									"type": "text"
+								},
+								{
+									"key": "artikelimage",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/artikel/create",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"artikel",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/artikel/artikel",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"artikel",
+								"artikel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/artikel/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"artikel",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOwn articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxNjgyOH0.hKtUdmBtr3WJzNNpx3-PXf-UYRriYH7nWqeKKjA5bIQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTI1IiwiaWF0IjoxNjE1MzcwNTc4fQ.t2VeQ0OgKoAsYnu65VM6TNh410NLSdwsK0VZQVvmxmo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/artikel/myarticles",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"artikel",
+								"myarticles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create artikel Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNCIsImlhdCI6MTYxNTUxNjgyOH0.hKtUdmBtr3WJzNNpx3-PXf-UYRriYH7nWqeKKjA5bIQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "judul",
+									"value": "Sample Title",
+									"type": "text"
+								},
+								{
+									"key": "penulis",
+									"value": "Sample User",
+									"type": "text"
+								},
+								{
+									"key": "konten",
+									"value": "Saya lapar banget",
+									"type": "text"
+								},
+								{
+									"key": "tanggalposting",
+									"value": "12 Maret 2021",
+									"type": "text"
+								},
+								{
+									"key": "artikelimage",
+									"type": "file",
+									"src": "/C:/Users/NITRO/Pictures/Nitro/Gaming_5000x3125.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{endpoint}}/artikel/update/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"artikel",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete artikel",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJzYW1wbGV1c2VyMTIzNDUiLCJpYXQiOjE2MTUwOTE2OTd9.-H9a9nWruYs0rbI79cexQLa7TT8NZykwsAIzUBtE0ls",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/artikel/delete/2",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"artikel",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
