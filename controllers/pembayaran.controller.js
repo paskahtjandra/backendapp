@@ -1,5 +1,4 @@
 const db = require("../models");
-const pembayaranModel = require("../models/pembayaran.model");
 const Pembayaran = db.pembayarans;
 const Produk = db.produks;
 const Subscribe = db.subscribes;
@@ -100,21 +99,36 @@ async function confirmproduct(req, res, next) {
     let condition = {
         idpenjual: req.user.id,
         id: id,
+
     };
 
-    const penarikan = await Pembayaran.findOne({ where: condition })
-
-    let condition2 = {
-        id: penarikan.idproduk,
-    };
-    const pengurangans = await Produk.findOne({ where: condition2 })
     try {
+        const penarikan = await Pembayaran.findOne({ where: condition })
+        if (!penarikan) {
+            next({
+                message: 'id not found',
+                statusCode: 400
+            })
+        }
+        const pengurangans = await Produk.findOne({
+            where: {
+                id: penarikan.idproduk,
+            }
+        })
+        if (pengurangans.jumlah < penarikan.jumlah) {
+            next({
+                message: 'product sudah habis, uang anda akan dikembalikan',
+                statusCode: 409
+            })
+        }
+
         //Declare transaction
         const t = await db.sequelize.transaction();
 
         //update produk (minus)
         const pengurangan = {
             jumlah: pengurangans.jumlah - penarikan.jumlah
+
         }
         const numProduk = await Produk.update(pengurangan, {
             where: {
@@ -135,6 +149,7 @@ async function confirmproduct(req, res, next) {
             );
             return;
         }
+
 
         //update pembayaran
         const validasi = {
@@ -177,13 +192,20 @@ async function confirmsubscribe(req, res, next) {
         id: id,
     };
 
-    const penarikan = await Pembayaran.findOne({ where: condition })
-
-    let condition2 = {
-        id: penarikan.idproduk,
-    };
-    const pengurangans = await Subscribe.findOne({ where: condition2 })
     try {
+        const penarikan = await Pembayaran.findOne({ where: condition })
+        if (!penarikan) {
+            next({
+                message: 'id not found',
+                statusCode: 400
+            })
+        }
+        const pengurangans = await Subscribe.findOne({
+            where: {
+                id: penarikan.idproduk,
+            }
+        })
+
         //Declare transaction
         const t = await db.sequelize.transaction();
 
@@ -210,7 +232,6 @@ async function confirmsubscribe(req, res, next) {
             );
             return;
         }
-        await t.commit();
 
         //update pembayaran
         const validasi = {
