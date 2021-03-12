@@ -20,19 +20,22 @@ const pembayaranController = require('../controllers/pembayaran.controller')
 //create pembayaran
 router.post('/pembayaran', jwtMiddleware, pembayaranController.createPembayaran)
 
-//validasi pembayaran
-router.put('/validasi/:id', jwtMiddleware, upload.single('buktipembayaran'), pembayaranController.validate)
+//findall
+router.get('/allpembayaran', pembayaranController.findAll)
 
-//konfirmasi pembayaran
-router.put('/konfirmasi/:id', jwtMiddleware, pembayaranController.confirm)
+//findownproduct
+router.get('/daftarpembeli', jwtMiddleware, pembayaranController.findtransaksi)
 
 //getone
 router.get('/:id', pembayaranController.findOne)
 
-//findall
-router.get('/productlist', pembayaranController.findAll)
+//validasi pembayaran
+router.put('/validasi/:id', jwtMiddleware, upload.single('buktipembayaran'), pembayaranController.validate)
 
-//findownproduct
-router.get('/myproduct/:id', jwtMiddleware, pembayaranController.findtransaksi)
+//konfirmasi pembayaran produk
+router.put('/konfirmasiproduk/:id', jwtMiddleware, pembayaranController.confirmproduct)
+
+//konfirmasi pembayaran
+router.put('/konfirmasisubscribe/:id', jwtMiddleware, pembayaranController.confirmsubscribe)
 
 module.exports = router

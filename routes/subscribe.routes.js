@@ -15,24 +15,27 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-const artikelController = require('../controllers/artikel.controller')
+const subscribeController = require('../controllers/subscribe.controller')
 
 //create product
-router.post('/create', jwtMiddleware, upload.single('artikelimage'), artikelController.createArtikel)
+router.post('/startsubscribe', upload.single('productimage'), jwtMiddleware, joiMiddleware, subscribeController.startsubscribe)
 
 //findall
-router.get('/artikel', artikelController.findAll)
+router.get('/allsubscription', subscribeController.findAll)
+
+//findinput
+router.get('/search', subscribeController.findinput)
 
 //findownproduct
-router.get('/myarticles', jwtMiddleware, artikelController.findownartikel)
+router.get('/mysubscription', jwtMiddleware, subscribeController.findownsubscribe)
 
 //getone
-router.get('/:id', artikelController.findOne)
+router.get('/:id', subscribeController.findOne)
 
 //update
-router.put('/update/:id', jwtMiddleware, artikelController.update)
+router.put('/update/:id', upload.single('productimage'), jwtMiddleware, joiMiddleware, subscribeController.update)
 
 //delete
-router.delete('/delete/:id', jwtMiddleware, artikelController.delete)
+router.delete('/delete/:id', jwtMiddleware, subscribeController.delete)
 
 module.exports = router

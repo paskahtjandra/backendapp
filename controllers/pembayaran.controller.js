@@ -2,6 +2,7 @@ const db = require("../models");
 const pembayaranModel = require("../models/pembayaran.model");
 const Pembayaran = db.pembayarans;
 const Produk = db.produks;
+const Subscribe = db.subscribes;
 
 //buat transaksi
 function createPembayaran(req, res, next) {
@@ -34,6 +35,7 @@ function validate(req, res, next) {
     };
     const id = req.params.id;
     let condition = {
+        idpembeli: req.user.id,
         id: id,
     };
     Pembayaran.update(validasi, { where: condition })
@@ -60,10 +62,11 @@ function validate(req, res, next) {
 }
 
 
-//confirmtransaction
-async function confirm(req, res, next) {
+//confirmtransactionproduct
+async function confirmproduct(req, res, next) {
     const id = req.params.id;
     let condition = {
+        idpenjual: req.user.id,
         id: id,
     };
 
@@ -100,6 +103,82 @@ async function confirm(req, res, next) {
             );
             return;
         }
+
+        //update pembayaran
+        const validasi = {
+            status: 'confirmed'
+        };
+        const numConfirm = await Pembayaran.update(validasi, {
+            where: {
+                id: id
+            }
+        }, { transaction: t });
+        // check update success
+        if (numConfirm == 1) {
+            if (numConfirm == null) {
+                next("No Transactioin Found");
+                return;
+            }
+            res.send({
+                message: "Pembayaran telah terverifikasi",
+            });
+        } else {
+            next(
+                `Cannot update Transaction with id=${id}. Maybe Product was not found or req.body is empty!`
+            );
+            return;
+        }
+        await t.commit();
+    } catch (error) {
+        next(error);
+        await t.rollback();
+        return;
+    }
+
+}
+
+//confirmtransactionsubscribe
+async function confirmsubscribe(req, res, next) {
+    const id = req.params.id;
+    let condition = {
+        idpenjual: req.user.id,
+        id: id,
+    };
+
+    const penarikan = await Pembayaran.findOne({ where: condition })
+
+    let condition2 = {
+        id: penarikan.idproduk,
+    };
+    const pengurangans = await Subscribe.findOne({ where: condition2 })
+    try {
+        //Declare transaction
+        const t = await db.sequelize.transaction();
+
+        //update subscribe (minus)
+        const pengurangan = {
+            jumlah: pengurangans.jumlah - penarikan.jumlah
+        }
+        const numSubscribe = await Subscribe.update(pengurangan, {
+            where: {
+                id: penarikan.idproduk
+            },
+        }, { transaction: t });
+
+        // check update success
+        if (numSubscribe == 1) {
+            if (numSubscribe == null) {
+                next("No Subscription Found");
+                return;
+            }
+
+        } else {
+            next(
+                `Cannot update Subscription with id=${id}. Maybe Product was not found or req.body is empty!`
+            );
+            return;
+        }
+        await t.commit();
 
         //update pembayaran
         const validasi = {
@@ -171,7 +250,7 @@ function findOne(req, res, next) {
 }
 
 
-//melihat semua transaksi
+//melihat transaksi pribadi
 
 function findtransaksi(req, res, next) {
 
@@ -196,7 +275,8 @@ function findtransaksi(req, res, next) {
 module.exports = {
     createPembayaran,
     validate,
-    confirm,
+    confirmproduct,
+    confirmsubscribe,
     findAll,
     findOne,
     findtransaksi,

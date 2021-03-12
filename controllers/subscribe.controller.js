@@ -1,12 +1,12 @@
 const db = require("../models");
-const Produk = db.produks;
+const Subscribe = db.subscribes;
 const { Op } = require("sequelize");
 
 //create produk
-function createProduk(req, res, next) {
+function startsubscribe(req, res, next) {
     console.log(req.file)
     const { namaproduk, deskripsi, harga, jumlah } = req.body;
-    const product = {
+    const produklangganan = {
         namaproduk,
         deskripsi,
         harga,
@@ -14,7 +14,7 @@ function createProduk(req, res, next) {
         userId: req.user.id,
         gambar: req.file.path
     };
-    Produk.create(product)
+    Subscribe.create(produklangganan)
         .then((data) => {
             res.send(data);
         })
@@ -33,7 +33,7 @@ function findinput(req, res, next) {
             [Op.like]: `%${query}%`
         }
     };
-    Produk.findAll({ where: condition })
+    Subscribe.findAll({ where: condition })
         .then((data) => {
             if (data.length == 0) {
                 res.send({
@@ -51,7 +51,7 @@ function findinput(req, res, next) {
 function findAll(req, res, next) {
     const query = req.params.query;
     var condition = {};
-    Produk.findAll({ where: condition })
+    Subscribe.findAll({ where: condition })
         .then((data) => {
             if (data.length == 0) {
                 res.send({
@@ -68,7 +68,7 @@ function findAll(req, res, next) {
 //findOne
 function findOne(req, res, next) {
     const id = req.params.id;
-    Produk.findByPk(id)
+    Subscribe.findByPk(id)
         .then((data) => {
             if (data == null) {
                 next("No product found");
@@ -94,10 +94,10 @@ function update(req, res, next) {
     };
     const id = req.params.id;
     let condition = {
-        userId: req.user.id,
         id: id,
+        userId: req.user.id,
     };
-    Produk.update(product, { where: condition })
+    Subscribe.update(product, { where: condition })
         .then((num) => {
             if (num == 1) {
                 if (num == null) {
@@ -121,11 +121,11 @@ function update(req, res, next) {
 }
 
 //find own product
-function findownproduct(req, res, next) {
+function findownsubscribe(req, res, next) {
     let condition = {
         userId: req.user.id,
     }
-    Produk.findAll({ where: condition })
+    Subscribe.findAll({ where: condition })
         .then((data) => {
             if (data.legth == 0) {
                 res.send({
@@ -148,7 +148,7 @@ function _delete(req, res, next) {
         userId: req.user.id,
     };
 
-    Produk.destroy({
+    Subscribe.destroy({
             where: condition,
         })
         .then((num) => {
@@ -170,10 +170,10 @@ function _delete(req, res, next) {
 }
 
 module.exports = {
-    createProduk,
+    startsubscribe,
     findAll,
     findOne,
-    findownproduct,
+    findownsubscribe,
     update,
     delete: _delete,
     findinput,

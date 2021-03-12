@@ -71,6 +71,7 @@ function update(req, res, next) {
         //gambar: req.file.path,
     };
     let condition = {
+        userId: req.user.id,
         id: id,
     };
     Artikel.update(artikel, { where: condition })
@@ -97,9 +98,9 @@ function update(req, res, next) {
 }
 
 //find own artikel
-function findownproduct(req, res, next) {
+function findownartikel(req, res, next) {
     let condition = {
-        userId: req.params.id,
+        userId: req.user.id,
     };
     Artikel.findAll({ where: condition })
         .then((data) => {
@@ -148,7 +149,7 @@ module.exports = {
     createArtikel,
     findAll,
     findOne,
-    findownproduct,
+    findownartikel,
     update,
     delete: _delete,
 };
