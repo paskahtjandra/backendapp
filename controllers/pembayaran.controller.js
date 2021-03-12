@@ -4,13 +4,12 @@ const Pembayaran = db.pembayarans;
 const Produk = db.produks;
 const Subscribe = db.subscribes;
 
-//buat transaksi
-function createPembayaran(req, res, next) {
+function createKeranjang(req, res, next) {
     const { harga, jumlah, idpenjual, idproduk } = req.body;
     const transaksi = {
         harga,
         jumlah,
-        status: 'notvalidated',
+        status: 'waiting',
         total: harga * jumlah,
         idpenjual,
         idproduk,
@@ -20,6 +19,39 @@ function createPembayaran(req, res, next) {
     Pembayaran.create(transaksi)
         .then((data) => {
             res.send(data);
+        })
+        .catch((err) => {
+            next(err);
+            return;
+        });
+}
+
+//buat transaksi
+function createPembayaran(req, res, next) {
+    const validasi = {
+        status: 'notvalidated',
+    };
+    const id = req.params.id;
+    let condition = {
+        idpembeli: req.user.id,
+        id: id,
+    };
+    Pembayaran.update(validasi, { where: condition })
+        .then((num) => {
+            if (num == 1) {
+                if (num == null) {
+                    next("No Transactioin Found");
+                    return;
+                }
+                res.send({
+                    message: "Pesanan anda diterima",
+                });
+            } else {
+                next(
+                    `Cannot update Product with id=${id}. Maybe Product was not found or req.body is empty!`
+                );
+                return;
+            }
         })
         .catch((err) => {
             next(err);
@@ -252,7 +284,7 @@ function findOne(req, res, next) {
 
 //melihat transaksi pribadi
 
-function findtransaksi(req, res, next) {
+function findtransaksipenjual(req, res, next) {
 
     let condition = {
         idpenjual: req.user.id,
@@ -272,12 +304,64 @@ function findtransaksi(req, res, next) {
         });
 }
 
+function findtransaksipembeli(req, res, next) {
+
+    let condition = {
+        idpembeli: req.user.id,
+    };
+    Pembayaran.findAll({ where: condition })
+        .then((data) => {
+            if (data.legth == 0) {
+                res.send({
+                    message: "No Product existed",
+                });
+            }
+            res.send(data);
+        })
+        .catch((err) => {
+            next(err);
+            return;
+        });
+}
+
+//delete
+function _delete(req, res, next) {
+    const id = req.params.id;
+    let condition = {
+        id: id,
+        idpembeli: req.user.id,
+    };
+
+    Pembayaran.destroy({
+            where: condition,
+        })
+        .then((num) => {
+            if (num == 1) {
+                res.send({
+                    message: "Pembayaran was deleted successfully!",
+                });
+            } else {
+                next(
+                    "Cannot delete Product with id=${id}. Maybe Product was not found!"
+                );
+                return;
+            }
+        })
+        .catch((err) => {
+            next(err);
+            return;
+        });
+}
+
 module.exports = {
+    createKeranjang,
     createPembayaran,
     validate,
     confirmproduct,
     confirmsubscribe,
     findAll,
     findOne,
-    findtransaksi,
+    findtransaksipenjual,
+    findtransaksipembeli,
+    delete: _delete,
 };

@@ -18,13 +18,15 @@ const upload = multer({ storage: storage })
 const pembayaranController = require('../controllers/pembayaran.controller')
 
 //create pembayaran
-router.post('/pembayaran', jwtMiddleware, pembayaranController.createPembayaran)
+router.post('/tambahkeranjang', jwtMiddleware, pembayaranController.createKeranjang)
+router.put('/pembayaran/:id', jwtMiddleware, pembayaranController.createPembayaran)
 
 //findall
 router.get('/allpembayaran', pembayaranController.findAll)
 
 //findownproduct
-router.get('/daftarpembeli', jwtMiddleware, pembayaranController.findtransaksi)
+router.get('/daftarpembeli', jwtMiddleware, pembayaranController.findtransaksipenjual)
+router.get('/transaksiku', jwtMiddleware, pembayaranController.findtransaksipembeli)
 
 //getone
 router.get('/:id', pembayaranController.findOne)
@@ -37,5 +39,8 @@ router.put('/konfirmasiproduk/:id', jwtMiddleware, pembayaranController.confirmp
 
 //konfirmasi pembayaran
 router.put('/konfirmasisubscribe/:id', jwtMiddleware, pembayaranController.confirmsubscribe)
+
+//delete
+router.delete('/delete/:id', jwtMiddleware, pembayaranController.delete)
 
 module.exports = router
