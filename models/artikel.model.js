@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
         },
         konten: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT,
             allowNull: false,
         },
         tanggalposting: {
