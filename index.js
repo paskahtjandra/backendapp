@@ -41,7 +41,7 @@ app.use('/', (req, res) => {
     })
 })
 
-const PORT = process.env.APP_PORT || 4000
+const PORT = process.env.APP_PORT || 10201
 app.listen(PORT, () => {
     console.log(`App is running at port ${PORT}`)
 })
