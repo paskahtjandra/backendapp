@@ -13,7 +13,7 @@ router.post('/login', joiMiddleware, userController.login)
 router.get('/users', userController.findAll)
 
 // getone
-router.get('/:id', jwtMiddleware, userController.findOne)
+router.get('/', jwtMiddleware, userController.findOne)
 
 // update
 router.put('/:id', jwtMiddleware, joiMiddleware, userController.update)

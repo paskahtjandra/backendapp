@@ -75,7 +75,7 @@ function findAll(req, res, next) {
 
 // findOne
 function findOne(req, res, next) {
-    const id = req.params.id;
+    const id = req.user.id;
     User.findByPk(id)
         .then((data) => {
             if (data == null) {
