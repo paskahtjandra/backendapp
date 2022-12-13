@@ -9,8 +9,7 @@ function createArtikel(req, res, next) {
         konten,
         penulis,
         tanggalposting,
-        userId: req.user.id,
-        gambar: req.file.path,
+        userId: req.user.id
     };
     Artikel.create(artikel)
         .then((data) => {
@@ -67,8 +66,7 @@ function update(req, res, next) {
         konten,
         penulis,
         tanggalposting,
-        userId: req.user.id,
-        //gambar: req.file.path,
+        userId: req.user.id
     };
     let condition = {
         userId: req.user.id,

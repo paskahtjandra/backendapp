@@ -18,7 +18,7 @@ const upload = multer({ storage: storage })
 const produkController = require('../controllers/produk.controller')
 
 //create product
-router.post('/create', upload.single('productimage'), jwtMiddleware, joiMiddleware, produkController.createProduk)
+router.post('/create', jwtMiddleware, joiMiddleware, produkController.createProduk)
 
 //findall
 router.get('/productlist', produkController.findAll)
@@ -33,7 +33,7 @@ router.get('/myproduct', jwtMiddleware, produkController.findownproduct)
 router.get('/:id', produkController.findOne)
 
 //update
-router.put('/update/:id', upload.single('productimage'), jwtMiddleware, joiMiddleware, produkController.update)
+router.put('/update/:id', jwtMiddleware, joiMiddleware, produkController.update)
 
 //delete
 router.delete('/delete/:id', jwtMiddleware, produkController.delete)

@@ -11,8 +11,7 @@ function startsubscribe(req, res, next) {
         deskripsi,
         harga,
         jumlah,
-        userId: req.user.id,
-        gambar: req.file.path
+        userId: req.user.id
     };
     Subscribe.create(produklangganan)
         .then((data) => {
@@ -89,8 +88,7 @@ function update(req, res, next) {
         deskripsi,
         harga,
         jumlah,
-        userId: req.user.id,
-        gambar: req.file.path,
+        userId: req.user.id
     };
     const id = req.params.id;
     let condition = {

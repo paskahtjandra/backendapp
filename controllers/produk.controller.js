@@ -4,7 +4,6 @@ const { Op } = require("sequelize");
 
 //create produk
 function createProduk(req, res, next) {
-    console.log(req.file)
     const { namaproduk, deskripsi, harga, jumlah } = req.body;
     const product = {
         namaproduk,
@@ -12,7 +11,6 @@ function createProduk(req, res, next) {
         harga,
         jumlah,
         userId: req.user.id,
-        gambar: req.file.path
     };
     Produk.create(product)
         .then((data) => {
@@ -89,8 +87,7 @@ function update(req, res, next) {
         deskripsi,
         harga,
         jumlah,
-        userId: req.user.id,
-        gambar: req.file.path,
+        userId: req.user.id
     };
     const id = req.params.id;
     let condition = {

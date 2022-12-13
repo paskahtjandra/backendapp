@@ -15,10 +15,6 @@ module.exports = (sequelize, Sequelize) => {
         tanggalposting: {
             type: Sequelize.STRING,
             allowNull: false,
-        },
-        gambar: {
-            type: Sequelize.STRING,
-            allowNull: false,
         }
 
     })
